@@ -19,6 +19,10 @@ export default function DnevnikTab({ gradiliste, unosi, setUnosi, svi }) {
   const [modal, setModal] = useState(null) // { mode: 'novi' | 'izmena', unos? }
   const [prosireno, setProsireno] = useState(null)
 
+  const jeIzvodjacOvdje = user.uloga === 'izvodjac' && gradiliste.izvodjacId === user.id
+  const jeInzenjerOvdje = user.uloga === 'inzenjer' && gradiliste.odgovorniInzenjerId === user.id
+  const mozeDodati = jeIzvodjacOvdje || user.uloga === 'admin'
+
   function autor(id) {
     const u = users.find((x) => x.id === id)
     return u ? `${u.ime} ${u.prezime}` : '—'
@@ -250,6 +254,18 @@ function DnevnikModal({ mode, unos, onClose, onSaveNew, onSaveEdit }) {
                 placeholder="Sunčano, 24°C"
                 className="w-full rounded-md border border-ink/15 px-3.5 py-2.5 text-sm focus:border-safety outline-none"
               />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-ink/70 mb-1.5">Broj radnika</label>
+              <input
+                type="number"
+                min="0"
+                value={forma.brojRadnika}
+                onChange={(e) => setForma((f) => ({ ...f, brojRadnika: e.target.value }))}
+                className="w-full rounded-md border border-ink/15 px-3.5 py-2.5 text-sm focus:border-safety outline-none"
+              />
+            </div>
+          </div>
           <div>
             <label className="block text-xs font-medium text-ink/70 mb-1.5">Izvedeni radovi *</label>
             <textarea
