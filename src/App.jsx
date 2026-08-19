@@ -6,7 +6,6 @@ import PublicLayout from './layouts/PublicLayout'
 import AppLayout from './layouts/AppLayout'
 
 import Landing from './pages/Landing'
-import KakoFunkcionise from './pages/KakoFunkcionise'
 import Kontakt from './pages/Kontakt'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -24,7 +23,6 @@ export default function App() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Landing />} />
-          <Route path="/kako-funkcionise" element={<KakoFunkcionise />} />
           <Route path="/kontakt" element={<Kontakt />} />
         </Route>
 
